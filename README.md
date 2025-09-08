@@ -1,5 +1,7 @@
 # NetSerializer - A fast, simple serializer for .Net
 
+This version is adapted by Rosenxt
+
 NetSerializer is a simple and very fast serializer for .Net languages. It is
 the fastest serializer I have found for my use cases.
 
@@ -16,6 +18,11 @@ The main pros of NetSerializer are:
 - Thread safe without locks
 - The data is written to the stream and read from the stream directly, without
   the need for temporary buffers
+- With the adaption of Rosenxt it is possible to use the serializer in a dynamic way,
+  that each serialized type is added automatically to the type map. So it is not required
+  to know exaxtly the types which will be expected. It is only required to provide
+  the type map which was created during the serialization to all serializers which are used
+  for deserialization
 
 The simpleness of NetSerializer has a drawback which must be considered by the
 user: no versioning or other meta information is sent, which means that the

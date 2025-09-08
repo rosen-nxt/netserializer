@@ -1,5 +1,7 @@
 # NetSerializer - A fast, simple serializer for .Net
 
+This version is adapted by Rosenxt
+
 ## Supported Types
 
 NetSerializer supports serializing the following types:
@@ -134,6 +136,15 @@ rootTypes)`, which assigns type IDs automatically and returns a type map of
 the added types, which must then be delivered to other instances.
 
 ## Settings
+
+- AutomaticallyAddUnknownTypesDuringSerialization (This property is added by Rosenxt):
+Instead of adding the types with a constructor argument or the method AddTypes
+it is possible to set the property AutomaticallyAddUnknownTypesDuringSerialization
+in the settings to true. Then each unknown type will be added during serialization
+to the internal type map. As above mentioned it is then required to transfer this
+type map to instances of the serializer which are used for deserialization.
+This works only for types which are by default serializable by the serializer
+or for which a custom serializer is added.
 
 You can provide `NetSerializer.Settings` instance when initializing
 netserializer to enable support for `IDeserializationCallback` or

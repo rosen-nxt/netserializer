@@ -34,6 +34,14 @@ namespace NetSerializer
 		/// <summary>
 		/// Initialize NetSerializer
 		/// </summary>
+		/// <param name="settings">Settings</param>
+		public Serializer(Settings settings) : this(Enumerable.Empty<Type>(), settings)
+		{
+		}
+
+		/// <summary>
+		/// Initialize NetSerializer
+		/// </summary>
 		/// <param name="rootTypes">Types to be (de)serialized</param>
 		public Serializer(IEnumerable<Type> rootTypes)
 			: this(rootTypes, new Settings())
@@ -320,6 +328,11 @@ namespace NetSerializer
 
 		internal uint GetTypeIdAndSerializer(Type type, out SerializeDelegate<object> del)
 		{
+			if (Settings.AutomaticallyAddUnknownTypesDuringSerialization && !m_runtimeTypeMap.ContainsKey(type))
+			{
+				AddTypes([type]);
+			}
+
 			var data = m_runtimeTypeMap[type];
 
 			if (data.WriterTrampolineDelegate != null)

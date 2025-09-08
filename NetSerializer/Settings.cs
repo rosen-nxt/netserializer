@@ -14,6 +14,11 @@ namespace NetSerializer
 	public class Settings
 	{
 		/// <summary>
+		/// Unknown Types are automatically added during the serialization.
+		/// </summary>
+		public bool AutomaticallyAddUnknownTypesDuringSerialization = false;
+		
+		/// <summary>
 		/// Array of custom TypeSerializers
 		/// </summary>
 		public ITypeSerializer[] CustomTypeSerializers = new ITypeSerializer[0];
